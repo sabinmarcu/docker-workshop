@@ -1,0 +1,15 @@
+extends: airbnb
+parser: babel-eslint
+env:
+  browser: true
+  node: true
+  jest: true
+plugins:
+  - flowtype
+rules:
+  react/jsx-filename-extension:
+    - 0
+  react/prop-types:
+    - 1
+    -
+      skipUndeclared: true

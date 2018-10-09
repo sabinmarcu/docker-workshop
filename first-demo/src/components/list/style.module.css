@@ -1,0 +1,35 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  flex: 1;
+  height: 30px;
+  border-bottom: solid 1px #eef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.item.done {
+  text-decoration: line-through;
+  background: #ccc;
+}
+
+.buttons {
+  display: flex;
+}
+
+.button {
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.item:last-child {
+  border-bottom: none;
+}

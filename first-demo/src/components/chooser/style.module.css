@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+}
+
+.item {
+  padding: 15px 20px;
+  border-right: solid 1px #dde;
+  background: #ccc;
+}
+
+.button {
+  cursor: pointer;
+  background: white;
+}
