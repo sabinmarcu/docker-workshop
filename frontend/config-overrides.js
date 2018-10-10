@@ -4,11 +4,24 @@ const {
 const nested = require('postcss-nested');
 
 module.exports = override(
+  addBabelPlugin([
+    'babel-plugin-dotenv',
+    {
+      configDir: '../',
+      replacedModuleName: 'dotenv',
+      matchPrefix: 'RC_',
+      includeProcessEnv: {
+        DEBUG: 'log:*,error:*',
+        NODE_ENV: 'development',
+        RC_BACKEND_PORT: 3000,
+      },
+    },
+  ]),
   (config) => {
     config.module.rules[2].oneOf.filter(it => `${it.test}`.includes('.css')).forEach((postcss) => {
       postcss.use.filter(it => it.loader && it.loader.includes('postcss')).forEach((loader) => {
         const { plugins } = loader.options;
-        loader.options.plugins = () => [
+        loader.options.plugins = () => [ // eslint-disable-line
           nested(),
           ...plugins(),
         ];

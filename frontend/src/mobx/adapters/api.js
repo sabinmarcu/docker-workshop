@@ -1,10 +1,11 @@
 import { differenceWith, map } from 'ramda';
 
+import { RC_BACKEND_PORT } from 'dotenv';
 import type { StorageAdapter } from '../types';
 import { Todo } from '../store';
 
 const endpoint = '/todos';
-const server = '//localhost:4000';
+const server = `//localhost:${RC_BACKEND_PORT}`;
 const api = `${server}${endpoint}`;
 
 const fetchRemote = async () => fetch(api).then(data => data.json());

@@ -42,7 +42,6 @@ export class Todos implements Store {
       this.disableAutorun();
     }
     const items = await this.adapter.getItems();
-    console.log(items);
     this.todos = items;
     this.disableAutorun = reaction(
       () => this.todos.map(it => it.finished),

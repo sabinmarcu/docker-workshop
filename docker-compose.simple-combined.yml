@@ -1,0 +1,37 @@
+version: '3'
+services:
+  frontend:
+    build: frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - $RC_FRONTEND_PORT:3000
+    environment:
+      - RC_BACKEND_PORT
+    networks:
+      - default
+  simple-server:
+    build: simple-server
+    volumes:
+      - ./simple-server:/app
+      - ./auth-server:$RC_AUTH_PATH
+      - /app/node_modules
+    ports:
+      - $RC_BACKEND_PORT:3000
+    environment:
+      - RC_MONGO_HOST=mongo
+      - RC_MONGO_DB=other-db
+      - RC_AUTH_KEY
+      - RC_AUTH_SECRET
+      - RC_AUTH_PATH
+    networks:
+      - default
+      - backend
+  mongo:
+    image: mongo
+    networks:
+      - backend
+
+networks:
+  backend:

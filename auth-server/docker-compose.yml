@@ -1,0 +1,12 @@
+version: '3'
+services:
+  backend:
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      - RC_AUTH_KEY=banana
+      - RC_AUTH_SECRET=potato
