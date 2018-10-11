@@ -21,7 +21,11 @@ module.exports = server => {
   });
   server.post('/todos', ...middleware, async (req, res) => {
     try {
-      const todo = new model(req.body);
+      let todo = await model.findOne({ id: req.body.id });
+      if (!todo) {
+        const todo = new model(req.body);
+      }
+      Object.keys(req.body).forEach(key => { todo[key] = req.body[key] });
       await todo.save();
       ReS(res, todo);
     } catch (e) {

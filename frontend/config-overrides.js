@@ -14,6 +14,7 @@ module.exports = override(
         DEBUG: 'log:*,error:*',
         NODE_ENV: 'development',
         RC_BACKEND_PORT: 3000,
+        RC_AUTH_PORT: 'null',
       },
     },
   ]),

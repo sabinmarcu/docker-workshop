@@ -3,16 +3,17 @@ import { differenceWith, map } from 'ramda';
 import { RC_BACKEND_PORT } from 'dotenv';
 import type { StorageAdapter } from '../types';
 import { Todo } from '../store';
+import API from '../api';
 
 const endpoint = '/todos';
 const server = `//localhost:${RC_BACKEND_PORT}`;
 const api = `${server}${endpoint}`;
 
-const fetchRemote = async () => fetch(api).then(data => data.json());
+const fetchRemote = async () => API.fetch(api).then(data => data.json());
 const createTodo = ({ title, finished, id }) => new Todo(title, finished, id);
 
-const deleteItem = ({ id }) => fetch(`${api}/${id}`, { method: 'DELETE' });
-const addItem = data => fetch(api, {
+const deleteItem = ({ id }) => API.fetch(`${api}/${id}`, { method: 'DELETE' });
+const addItem = data => API.fetch(api, {
   method: 'POST',
   body: JSON.stringify(data),
   headers: {

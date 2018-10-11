@@ -9,6 +9,7 @@ services:
       - $RC_FRONTEND_PORT:3000
     environment:
       - RC_BACKEND_PORT
+      - RC_AUTH_PORT:${RC_BACKEND_PORT}
     networks:
       - default
   simple-server:

@@ -5,6 +5,7 @@ import nanoid from 'nanoid';
 import type { StoreItem, Store } from './types';
 
 import adapters from './adapters';
+import API from './api';
 
 export class Todo implements StoreItem {
   id = nanoid();
@@ -35,6 +36,10 @@ export class Todos implements Store {
 
   constructor() {
     this.initAdapter();
+    reaction(
+      () => API.key,
+      () => this.initAdapter(),
+    );
   }
 
   initAdapter = async () => {
